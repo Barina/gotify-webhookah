@@ -4,7 +4,7 @@
 
 # Webhookah
 
-> A Gotify plugin for building and testing webhook `curl` commands — with markdown support, domain overrides, and a UI that doesn't make you cry.
+> A Gotify plugin for building and testing webhook `curl` commands — with markdown support, domain override, and a UI that doesn't make you cry.
 
 ![Webhookah screenshot](Screenshots/webhookah-v1.0.0-screenshot-1_20260225_152645.png)
 
@@ -18,8 +18,8 @@ Webhookah gives you a proper builder UI inside your Gotify instance:
 
 - Picks up your apps automatically (no manual token pasting)
 - Generates a ready-to-copy `curl` command
-- Supports **markdown messages** via Gotify's `extras` API (sent as JSON body, which is the only way it seems works)
-- Optional **domain override** for when your internal and external addresses differ
+- Supports **markdown messages** via Gotify's `extras` API (sent as JSON body, which is the only way it seems to works)
+- **Domain override** field for generating commands pointing at a different host (e.g. your internal address)
 - **Test button** that fires the message instantly from the browser
 - Remembers your last values across sessions
 
@@ -67,16 +67,6 @@ make GOTIFY_VERSION="v2.9.0" FILE_SUFFIX="-for-gotify-v2.9.0" build-linux-amd64
 
 > Docker is required for cross-compilation. Make sure your user is in the `docker` group (`sudo usermod -aG docker $USER`) so you don't need to run `make` as root.
 
-### Plugin configuration (optional)
-
-After enabling the plugin, you can configure it via the **Settings** button in the plugin panel:
-
-| Field | Description |
-|---|---|
-| `public_domain` | Override the public-facing domain in generated URLs (e.g. `gotify.example.com`) |
-| `local_ip` | Local IP for generating a second "local network" curl command |
-| `local_port` | Port for the local URL (default: `80`) |
-
 ---
 
 ## Usage
@@ -84,8 +74,9 @@ After enabling the plugin, you can configure it via the **Settings** button in t
 1. Open the builder via the link in the Webhookah plugin panel
 2. Select an app from the dropdown
 3. Fill in your message (required), title, and priority as needed
-4. Toggle **Markdown** on if your message contains markdown syntax — this switches the output to a JSON-body curl command with the correct `extras` header that Gotify requires for markdown rendering
-5. Copy the generated command or hit **Test** to send immediately
+4. Optionally enter a **domain override** to generate a command pointing at a different host
+5. Toggle **Markdown** on if your message contains markdown syntax — this switches the output to a JSON-body curl command with the correct `extras` header that Gotify requires for markdown rendering
+6. Copy the generated command or hit **Test** to send immediately
 
 ---
 
