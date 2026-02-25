@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.25.1]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go ${{ matrix.go-version }}
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Install dependencies
+      run: |
+        go install github.com/gotify/plugin-api/cmd/gomod-cap@latest
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+
+    - name: Run tests
+      run: go test ./...
+
+    - name: Build plugin binaries
+      run: |
+        make GOTIFY_VERSION="v2.9.0" FILE_SUFFIX="-for-gotify-v2.9.0" build
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: gotify-plugin
+        path: build/*.so
+
+  release:
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: gotify-plugin
+        path: build/
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.event.release.tag_name }}
+        release_name: ${{ github.event.release.name }}
+        body: ${{ github.event.release.body }}
+        draft: ${{ github.event.release.draft }}
+        prerelease: ${{ github.event.release.prerelease }}
+
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./build/*.so
+        asset_name: webhookah.so
+        asset_content_type: application/octet-stream
