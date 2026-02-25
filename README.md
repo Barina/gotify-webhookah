@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="./webhookah-gotify-grok.webp" width="256em">
+</p>
+
 # Webhookah
 
 > A Gotify plugin for building and testing webhook `curl` commands — with markdown support, domain overrides, and a UI that doesn't make you cry.
@@ -92,6 +96,10 @@ This plugin is provided as-is under the MIT license. It is not affiliated with o
 The plugin reads your Gotify session token from `localStorage` to fetch your app list — this happens entirely within your browser and your own Gotify instance. No data is sent anywhere else.
 
 Use at your own risk. The author takes no responsibility for misconfigured webhooks, flooded notification channels, or CI pipelines that page you at 3am.
+
+## AI Assistance
+
+This project was built with the assistance of AI. The plugin code, build tooling, and this README were developed through an iterative conversation as well as more sophisticated AI tools — debugging build issues, fixing the plugin API interface, and refining the UI together. The ideas, requirements, and final decisions are the author's; the AI helped write and troubleshoot the implementation.
 
 ---
 
