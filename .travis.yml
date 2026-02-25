@@ -1,6 +1,6 @@
 language: go
 go:
-  - "1.21"
+  - "1.25.1"
 
 services:
   - docker
@@ -9,11 +9,10 @@ notifications:
   email: false
 
 env:
-  - GO111MODULE=on GOTIFY_VERSIONS="v2.9.0"
+  - GOTIFY_VERSIONS="v2.9.0"
 
 before_install:
-  - make download-tools
-  - go get -d
+  - go install github.com/gotify/plugin-api/cmd/gomod-cap@latest
 
 script:
   - go test ./...
