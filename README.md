@@ -30,7 +30,7 @@ Webhookah gives you a proper builder UI inside your Gotify instance:
 1. Go to the [Releases](https://github.com/barina/gotify-webhookah/releases) page
 2. Download the `.so` file matching your Gotify server's architecture and version, e.g.:
    ```
-   webhookah-linux-amd64-for-gotify-v2.9.0.so
+   webhookah-linux-amd64-for-gotify-v2.9.1.so
    ```
 3. Copy it to your Gotify plugins directory (default: `./data/plugins/`)
 4. Restart Gotify
@@ -54,7 +54,7 @@ go install github.com/gotify/plugin-api/cmd/gomod-cap@latest
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Build for all architectures
-make GOTIFY_VERSION="v2.9.0" FILE_SUFFIX="-for-gotify-v2.9.0" build
+make GOTIFY_VERSION="v2.9.1" FILE_SUFFIX="-for-gotify-v2.9.1" build
 ```
 
 Output `.so` files will be in the `./build/` directory.
@@ -62,7 +62,7 @@ Output `.so` files will be in the `./build/` directory.
 To build for a specific architecture only:
 
 ```bash
-make GOTIFY_VERSION="v2.9.0" FILE_SUFFIX="-for-gotify-v2.9.0" build-linux-amd64
+make GOTIFY_VERSION="v2.9.1" FILE_SUFFIX="-for-gotify-v2.9.1" build-linux-amd64
 ```
 
 > Docker is required for cross-compilation. Make sure your user is in the `docker` group (`sudo usermod -aG docker $USER`) so you don't need to run `make` as root.

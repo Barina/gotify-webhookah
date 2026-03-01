@@ -1,6 +1,6 @@
 module github.com/gotify/plugin-template
 
-go 1.24.0
+go 1.26.0
 
 require (
 	github.com/gin-gonic/gin v1.11.0

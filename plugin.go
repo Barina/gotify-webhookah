@@ -15,7 +15,7 @@ func GetGotifyPluginInfo() plugin.Info {
 	return plugin.Info{
 		Name:        "Webhookah",
 		Description: "Build and copy Gotify webhook curl commands for your apps.",
-		Version:     "1.1.0",
+		Version:     "1.1.1",
 		Author:      "Roy Barina",
 		Website:     "https://github.com/barina/gotify-webhookah",
 		License:     "MIT",
@@ -48,14 +48,16 @@ func (p *Plugin) SetStorageHandler(h plugin.StorageHandler) {
 	p.storageHandler = h
 }
 
-func (p *Plugin) DefaultConfig() interface{} {
-	return &Config{}
-}
+// commenting out next two functions as we might do want configs in the future.
+// for now we must remove them because gotify won't play nice with empty config object.
+// func (p *Plugin) DefaultConfig() interface{} {
+// 	return &Config{}
+// }
 
-func (p *Plugin) ValidateAndSetConfig(config interface{}) error {
-	p.config = *config.(*Config)
-	return nil
-}
+// func (p *Plugin) ValidateAndSetConfig(config interface{}) error {
+// 	p.config = *config.(*Config)
+// 	return nil
+// }
 
 func (p *Plugin) SetBaseURL(baseURL *url.URL) {}
 

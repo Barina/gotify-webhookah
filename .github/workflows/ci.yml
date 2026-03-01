@@ -24,13 +24,13 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version: "1.25.1"
+        go-version: "1.26.0"
 
     - name: Install gomod-cap
       run: go install github.com/gotify/plugin-api/cmd/gomod-cap@latest
 
     - name: Build plugin binaries
-      run: make GOTIFY_VERSION="v2.9.0" FILE_SUFFIX="-for-gotify-v2.9.0" build
+      run: make GOTIFY_VERSION="v2.9.1" FILE_SUFFIX="-for-gotify-v2.9.1" build
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
