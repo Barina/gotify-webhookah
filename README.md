@@ -2,6 +2,12 @@
    <img src="./webhookah-gotify-grok.webp" width="256em">
 </p>
 
+> ⚠️ **This repository is archived.**
+> 
+> Webhookah started as a Gotify plugin, but the plugin model turned out to be the wrong fit. The builder doesn't need to live inside Gotify — it doesn't modify Gotify, depend on its internals, or benefit from being bundled with it. As a plugin it's awkward to reach (buried in the plugin panel), requires a matching .so per Gotify version and architecture, and adds unnecessary build complexity. The tool itself is just a small web UI that generates curl commands and talks to Gotify's public API — it runs fine as a standalone app pointed at any Gotify instance.
+> 
+> The repo is archived for reference. You're welcome to fork it, rip out the plugin scaffolding, and run it as a plain web app. The core logic is all in plugin.go — the HTML, CSS, and JS embedded in serveBuilder is self-contained and straightforward to extract.
+
 # Webhookah
 
 > A Gotify plugin for building and testing webhook `curl` commands — with markdown support, domain override, and a UI that doesn't make you cry.
